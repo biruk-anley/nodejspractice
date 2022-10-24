@@ -1,21 +1,15 @@
-var rect={
-    perimeter : (x,y)=>(2*(x+y)),
-    area : (x,y)=>(x*y)
-};
+const http = require('http');
+const hostname = 'localhost';
+const port = 3000;
 
-function solveRect(l,b){
-    console.log("solving for rectangle with l = " + l + "and with width = "+b)
+const server = http.createServer((req,res)=>{
+    console.log(req.headers)
 
-    if (l<=0 || b<=0){
-        console.log('Recntagle dimensions should be greater than zero')
+    res.statusCode = 200;
+    res.setHeader('content-type', 'text/html')
+    res.end('<html<body><h1>Hello world</h1></body></html>')
+})
 
-    }
-    else{
-        console.log('the are of rectnagle is ' + rect.area(l,b))
-        console.log('the perimeter of the rectnagle will be ' + rect.perimeter(l,b))
-    }
-}
-
-solveRect(10,20)
-solveRect(0,5)
-solveRect(10,20)
+server.listen(port,hostname,()=>{
+    console.log(`serverrrr running at http://${hostname}:${port}`)
+})
